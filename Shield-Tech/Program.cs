@@ -1,8 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Shield_Tech.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSession();
 
+builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -15,7 +20,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();

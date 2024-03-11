@@ -7,40 +7,61 @@
     Welcome to our marketplace where you can find a variety of products and services we offer.
 </h2>
 
-
 <form>
-    <p>
-        <select asp-for="ProductCategory" asp-items="Model.Categories">
-            <option value="">All</option>
-        </select>
-        Title: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
-    </p>
+    <div class="form-group row justify-content-center align-items-center">
+        <div class="col-auto">
+            <select asp-for="ProductCategory" asp-items="Model.Categories" class="form-select">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="text" asp-for="SearchString" class="form-control" placeholder="Title">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </div>
 </form>
 
-
-
-
-
-
-<div class="row p-5 d-flex justify-content-between align-items-center gap-1">
-
+<div class="row row-cols-1 row-cols-md-3 g-4 p-4">
     @foreach (var product in Model.Product)
     {
-
-        <div class="card col-3" style="width: 18rem; padding:0;">
-            <img src="/images/value.jpg" class="card-img-top" alt="@product.Productname" style="width:100%">
-            <div class="card-body">
-                <h5 class="card-title fs-6">@product.Productname</h5>
-                <p class="card-text">@product.Price</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <a asp-page="./Admin/Details" asp-route-id="@product.Id">Details</a>
-                    <a asp-page="#" asp-route-id="@product.Id">Buy Now</a>
+        <div class="col">
+            <div class="card h-100">
+                <img src="/images/value.jpg" class="card-img-top" alt="@product.Productname">
+                <div class="card-body">
+                    <h5 class="card-title fs-5 fw-bold">@product.Productname</h5>
+                    <p class="card-text">Price: <span class="text-primary">£@product.Price</span></p>
                 </div>
-
-
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a asp-page="./Admin/Details" asp-route-id="@product.Id" class="btn btn-outline-secondary">Details</a>
+                        <button type="button" class="btn btn-primary buy-now" data-product-id="@product.Id" data-product-name="@product.Productname" data-product-price="@product.Price">Buy Now</button>
+                    </div>
+                </div>
             </div>
         </div>
     }
+</div>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cartModal">
+    View Cart
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Checkout</button>
+            </div>
+        </div>
+    </div>
 </div>

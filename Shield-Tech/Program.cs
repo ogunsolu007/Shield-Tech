@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Shield_Tech.Models;
 
@@ -8,6 +9,14 @@ builder.Services.AddRazorPages();
 builder.Services.AddSession();
 
 builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+//builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDataContext>();
+
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddDefaultTokenProviders()
+    .AddDefaultUI()
+    .AddEntityFrameworkStores<AppDataContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +32,7 @@ app.UseStaticFiles();
 app.UseSession();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

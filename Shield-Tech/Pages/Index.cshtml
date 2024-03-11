@@ -67,36 +67,113 @@
     </div>
 </div>
 
-<div class="featured-articles" style="background-color:#f6fbff; padding:6.75em  3.75em;">
-    <h1 class="text-center" style="color: #0f121e; font-size: 34px;">
-        <span style="color: #2d5bff;">Featured</span>
-        <span style="background-image: linear-gradient(to right, #2d5bff, #0f121e); -webkit-background-clip: text; color: transparent;">Articles</span>
-    </h1>
-    <div class="row justify-content-center d-flex align-items-center">
-        <div class="col-md-6">
-            <video src="videos/video.mp4" class="object-fit-contain" controls autoplay style="width: 100%; min-height: 100%;"></video>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12 bg-primary text-white p-3 rounded">
-                            <h3>The Importance of Antivirus in Everyday Computing</h3>
-                            <p>Discover how DefendPro Antivirus shields your personal data from malware, ransomware, and phishing attacks, ensuring safe browsing and data integrity. With real-time protection and automatic updates, stay one step ahead of cybercriminals.</p>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-md-6 bg-secondary  text-white p-3 rounded">
-                            <h3>Why Every Home Needs a Secure Router</h3>
-                            <p>Explore how SafeNet Secure Router and GuardianNet Wi-Fi Access Point transform your home network into a fortress. Learn about the significance of encryption, firewalls, and secure Wi-Fi protocols in protecting your family’s online activities.</p>
-                        </div>
-                        <div class="col-md-6 bg-info text-white p-3 rounded">
-                            <h3>Empower Your Team with Cybersecurity Training</h3>
-                            <p>Uncover the value of educating your team with InfoSec Academy’s courses. From basic cybersecurity awareness to advanced certification programs, equip your employees with the knowledge to recognize and mitigate digital threats.</p>
-                        </div>
-                    </div>
+
+<div class="container-fluid">
+    <div class="featured-articles" style="background-color:#f6fbff; padding:6.75em 3.75em;">
+        <h1 class="text-center" style="color: #0f121e; font-size: 34px;">
+            <span style="color: #2d5bff;">Featured</span>
+            <span style="background-image: linear-gradient(to right, #2d5bff, #0f121e); -webkit-background-clip: text; color: transparent;">Articles</span>
+        </h1>
+
+        <!-- Slideshow Container -->
+        <div class="slideshow-container">
+            <!-- Slides -->
+            <div class="card mySlides">
+                <div class="card-body " style="padding:10px 15px">
+                    <h3>Empower Your Team with Cybersecurity Training</h3>
+                    <p>Uncover the value of educating your team with InfoSec Academy’s courses. From basic cybersecurity awareness to advanced certification programs, equip your employees with the knowledge to recognize and mitigate digital threats.</p>
                 </div>
             </div>
+            <div class="card mySlides">
+                <div class="card-body pd-3" style="padding:10px 15px">
+                    <h3>Why Every Home Needs a Secure Router</h3>
+                    <p>Explore how SafeNet Secure Router and GuardianNet Wi-Fi Access Point transform your home network into a fortress. Learn about the significance of encryption, firewalls, and secure Wi-Fi protocols in protecting your family’s online activities.</p>
+                </div>
+            </div>
+            <div class="card mySlides">
+                <div class="card-body  ">
+                    <h3>The Importance of Antivirus in Everyday Computing</h3>
+                    <p>Discover how DefendPro Antivirus shields your personal data from malware, ransomware, and phishing attacks, ensuring safe browsing and data integrity. With real-time protection and automatic updates, stay one step ahead of cybercriminals.</p>
+                </div>
+            </div>
+
+            <!-- Slideshow Controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
     </div>
 </div>
+
+
+
+<section class="gram-service">
+    <div class="gram-page" style="display:flex; align-items:center; justify-content:space-between;padding:30px">
+        <div>
+            <h3>On the 'gram</h3>
+            <p>#HackYourWorld</p>
+        </div>
+        <div class="ig-handle">
+            <a href="#" style="text-decoration:none; background-image: linear-gradient(to right, #2d5bff, #0f121e); -webkit-background-clip: text; color: transparent;font-weight:bolder">ShieldTech</a>
+            <span class="material-symbols-outlined verify">
+                verified
+            </span>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    /* Style for Slideshow Container */
+    .slideshow-container {
+        position: relative;
+        max-width: 800px; /* Adjust the width as needed */
+        margin: 50px auto;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Adding box shadow */
+    }
+
+    /* Hide slides by default */
+    .mySlides {
+        display: none;
+    }
+
+    .card-body h3{
+      font-size:20px;
+    }
+    .card-body p{
+        font-size:15.7px;
+        padding:10px 20px;
+    }
+    /* Style for Slideshow Controls */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 16px;
+    
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 500px;
+        z-index: 1;
+        text-align:center;
+    }
+
+    .prev {
+        left: 0;
+    }
+
+    .next {
+        right: 0;
+    }
+
+        /* Style for Slideshow Navigation Icons */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+</style>
+
+
+
+

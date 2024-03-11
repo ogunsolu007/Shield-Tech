@@ -120,7 +120,7 @@ namespace Shield_Tech.Areas.Identity.Pages.Account
             {
                 var user = new AppUser
                 {
-                    UserName = Input.Email,
+                    UserName = Input.FirstName,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName

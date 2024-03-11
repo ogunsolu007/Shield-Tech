@@ -11,29 +11,7 @@ function markActiveLink(element) {
     // Add active class to the clicked link
     element.classList.add('active');
 }
-// slide show
-var slideIndex = 0;
-showSlides();
 
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1 }
-    slides[slideIndex - 1].style.display = "block";
-    setTimeout(showSlides, 5000); // Change slide every 5 seconds
-}
-
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
 
 //Add to cart
 document.querySelectorAll('.buy-now').forEach(button => {
@@ -67,22 +45,93 @@ document.querySelectorAll('.buy-now').forEach(button => {
 function displayCartItems() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartItemsContainer = document.getElementById('cartItems');
+    const totalAmountElement = document.getElementById('totalAmount');
+    let totalAmount = 0; // Initialize total amount
+
     cartItemsContainer.innerHTML = '';
 
     cartItems.forEach(item => {
         const cartItemDiv = document.createElement('div');
         cartItemDiv.classList.add('mb-3');
         cartItemDiv.innerHTML = `
-                    <div class="d-flex justify-content-between">
-                        <span>${item.name}</span>
-                        <span>${item.price}</span>
-                    </div>
-                `;
+            <div class="d-flex justify-content-between align-items-center">
+                <span>${item.name}</span>
+                <span>${item.price}</span>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="removeItem('${item.id}')">Remove</button>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="increaseQuantity('${item.id}')">+</button>
+                </div>
+            </div>
+        `;
         cartItemsContainer.appendChild(cartItemDiv);
+
+        // Calculate total amount
+        totalAmount += parseFloat(item.price);
     });
+
+    // Display total amount
+    totalAmountElement.textContent = totalAmount.toFixed(2); // Assuming price is in decimal format
+}
+
+// Function to remove item from cart
+function removeItem(itemId) {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Filter out the item with the specified itemId
+    cartItems = cartItems.filter(item => item.id !== itemId);
+
+    // Update the cartItems in local storage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+    // Refresh the cart items display
+    displayCartItems();
+}
+
+// Function to increase quantity of item in cart
+function increaseQuantity(itemId) {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Find the item with the specified itemId
+    const item = cartItems.find(item => item.id === itemId);
+
+    // Increase quantity (assuming there's a quantity property in the item object)
+    if (item) {
+        item.quantity = (item.quantity || 1) + 1; // Increase quantity by 1
+    }
+
+    // Update the cartItems in local storage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+    // Refresh the cart items display
+    displayCartItems();
 }
 
 // Display cart items when the modal is shown
 document.getElementById('cartModal').addEventListener('shown.bs.modal', displayCartItems);
 
-   
+
+
+
+// slide show
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 5000); // Change slide every 5 seconds
+}
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}s
